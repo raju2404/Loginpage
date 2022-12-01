@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_userid"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginHorizontal="30dp"
+        android:hint="Userid"
+        android:textStyle="italic"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_emailmobile"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginHorizontal="30dp"
+        android:hint="Email or mobile number"
+        android:textStyle="italic"
+
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="200dp"
+
+        android:background="@drawable/button_bg"
+        android:textColor="@color/white"
+        />
+
+
+</RelativeLayout>
