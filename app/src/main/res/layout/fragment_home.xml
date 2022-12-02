@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:text="Home Fragement"
         android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        />
 
 </RelativeLayout>

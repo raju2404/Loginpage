@@ -3,6 +3,7 @@ package com.example.ScanPe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     //public static final String url_login = "http://10.0.2.2:5000/checkUser";
     EditText txt_userid,txt_password;
     private RequestQueue requestQueue;
-    //private CheckBox checkbox_remember;
+    private CheckBox checkbox_remember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +51,24 @@ public class MainActivity extends AppCompatActivity {
         txt_userid = (EditText) findViewById(R.id.txt_userid);
         txt_password = (EditText) findViewById(R.id.txt_password);
         txtforgotpassword = findViewById(R.id.txt_forgotpwd);
-        //checkbox_remember=findViewById(R.id.chk_box_remember);
+        checkbox_remember=findViewById(R.id.chk_box_remember);
         btn_login = (Button) findViewById(R.id.btn_login);
         button = findViewById(R.id.btn_signup);
+
+        SharedPreferences preferences= getSharedPreferences("checkbox",MODE_PRIVATE);
+        String checkbox=preferences.getString("remember","");
+        String user_name=preferences.getString("name",txt_userid.getText().toString());
+        if(checkbox.equals("true")){
+            //Toast.makeText(MainActivity.this, "Checked", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainActivity.this, scanpage.class);
+            startActivity(intent);
+        }else if(checkbox.equals("false")){
+            Toast.makeText(MainActivity.this, "Please sign in", Toast.LENGTH_LONG).show();
+        }
+
+
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,51 +102,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        checkbox_remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                Toast.makeText(MainActivity.this, "Remembered", Toast.LENGTH_LONG).show();
-//            }
-//        });
+        checkbox_remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(buttonView.isChecked())
+                {
+                    SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
+                    SharedPreferences.Editor editor= preferences.edit();
+                    editor.putString("remember","true");
+                    editor.putString("name",txt_userid.getText().toString() );
+                    editor.commit();
+                    Toast.makeText(MainActivity.this, "Checked", Toast.LENGTH_LONG).show();
+
+                } else if(!buttonView.isChecked())
+                {
+                    SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
+                    SharedPreferences.Editor editor= preferences.edit();
+                    editor.putString("remember","false");
+                    editor.putString("name",txt_userid.getText().toString() );
+                    editor.commit();
+                    Toast.makeText(MainActivity.this, "Unchecked", Toast.LENGTH_LONG).show();
+
+
+                }
+            }
+        });
 
     }
 
     private void LoginUser(String userid, String password) {
 
-//       StringRequest stringRequest = new StringRequest(Request.Method.POST, url_login , new Response.Listener<String>() {
-//           @Override
-//           public void onResponse(String response) {
-//               if (response.equals("User exists")) {
-//                   Intent intent = new Intent(MainActivity.this, scanpage.class);
-//                   startActivity(intent);
-//                   finish();
-//               } else if (response.equals("User doesnt exist")) {
-//                   Toast.makeText(MainActivity.this, "Invalid login", Toast.LENGTH_LONG).show();
-//               }
-//           }
-//       }, new Response.ErrorListener() {
-//           @Override
-//           public void onErrorResponse(VolleyError error) {
-//               Toast.makeText(MainActivity.this, error.toString().trim(), Toast.LENGTH_LONG).show();
-//           }
-//       }
-//       ){
-//           @Override
-//           protected Map<String, String> getParams() throws AuthFailureError {
-//               Map<String , String> data=new HashMap<>();
-//               data.put("USERID",userid);
-//               data.put("PASSWORD",password);
-//               return data;
-//           }
-//       };
-//
-//        RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-//        requestQueue.add(stringRequest);
 
         try{
 
             requestQueue = Volley.newRequestQueue(getApplicationContext());
-            //String URL=" http://f2ff-49-207-221-175.ngrok.io/checkUser";
+            //String URL=" https://ac2d-2405-201-d005-a06d-c1be-5bd7-c25-56e.ap.ngrok.io/checkUser";
             String URL="http://10.0.2.2:5000/checkUser";
             //String URL= "http://192.168.29.225:8080/checkUser";
             JSONObject jsonBody = new JSONObject();
@@ -144,9 +151,16 @@ public class MainActivity extends AppCompatActivity {
 
                             if(response.equals("200")) {
                                 Log.i("VOLLEY", response);
+                                String name=userid;
                                 Toast.makeText(MainActivity.this, "User Loggedin successfully", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(MainActivity.this, scanpage.class);
+                                Intent intent = new Intent(MainActivity.this, scanpage.class).putExtra("name",name);
                                 startActivity(intent);
+                                SharedPreferences preferences= getSharedPreferences("checkbox",MODE_PRIVATE);
+                                //String checkbox=preferences.getString("remember","");
+                                String user_name=preferences.getString("name",userid);
+
+                                //startActivity(new Intent(MainActivity.this,HomeScreen.class)
+                                  //      .putExtra( "name", name ));
                             }
 
                         }

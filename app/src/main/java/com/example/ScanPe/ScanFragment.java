@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +19,7 @@ import ScanPe.R;
 public class ScanFragment extends Fragment {
 
     private Button btn_scan;
+    TextView u_name;
 
     @Nullable
     @Override
@@ -24,6 +27,9 @@ public class ScanFragment extends Fragment {
 
 
         View view= inflater.inflate(R.layout.fragment_scan,container,false);
+//        GlobalClass globalClass = (GlobalClass) getActivity().getApplicationContext();
+//        u_name=view.findViewById(R.id.u_name);
+//        u_name.setText(globalClass.getUserID());
         btn_scan = (Button) view.findViewById(R.id.btn_scan);
         btn_scan.setOnClickListener(new View.OnClickListener() {
             @Override

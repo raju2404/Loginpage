@@ -14,7 +14,7 @@
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="10dp"
     android:textColor="@color/black"
-
+    android:text="Scanned"
     android:textStyle="bold"
     android:clickable="true"
     />

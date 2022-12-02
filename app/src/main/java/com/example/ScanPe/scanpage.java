@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -20,6 +21,7 @@ public class scanpage extends AppCompatActivity {
 
     //private Button btn_scan;
     public static TextView txt_result_scan;
+    TextView tname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,15 @@ public class scanpage extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_scanpage);
+
+
+//        tname = findViewById(R.id.name);
+//        final  String name=getIntent().getStringExtra("name");
+//        tname.setText(name);
+//        Toast.makeText(scanpage.this, name, Toast.LENGTH_LONG).show();
+
+//        GlobalClass globalClass = (GlobalClass) getApplicationContext();
+//        globalClass.setUserID(name);
 
         BottomNavigationView bottomnav=findViewById(R.id.bottom_navigation);
         bottomnav.setOnNavigationItemSelectedListener(navListener);
