@@ -19,9 +19,8 @@ import ScanPe.R;
 
 public class scanpage extends AppCompatActivity {
 
-    //private Button btn_scan;
+
     public static TextView txt_result_scan;
-    TextView tname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,33 +29,10 @@ public class scanpage extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_scanpage);
-
-
-//        tname = findViewById(R.id.name);
-//        final  String name=getIntent().getStringExtra("name");
-//        tname.setText(name);
-//        Toast.makeText(scanpage.this, name, Toast.LENGTH_LONG).show();
-
-//        GlobalClass globalClass = (GlobalClass) getApplicationContext();
-//        globalClass.setUserID(name);
-
         BottomNavigationView bottomnav=findViewById(R.id.bottom_navigation);
         bottomnav.setOnNavigationItemSelectedListener(navListener);
-
-
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new HomeFragment()).commit();
-
-
-
         txt_result_scan = (TextView) findViewById(R.id.txt_result_scan);
-//        btn_scan = (Button) findViewById(R.id.btn_scan);
-//        btn_scan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                startActivity(new Intent(getApplicationContext(),scanresults.class));
-//            }
-//        });
 
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

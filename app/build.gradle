@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
     implementation 'com.karumi:dexter:6.2.2'
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 }

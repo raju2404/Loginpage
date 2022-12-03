@@ -6,6 +6,7 @@ public class GlobalClass extends Application {
 
     public static String UserID;
 
+
     public String getUserID() {
         return UserID;
     }

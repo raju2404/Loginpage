@@ -83,11 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     final String userid=txt_userid.getText().toString();
                     final String password= txt_password.getText().toString();
-
                     //final String repeatpassword=repeatpassword.getText().toString();
-
                     LoginUser(userid,password);
-
                 }
                 catch (Exception e){
                     e.printStackTrace();
@@ -113,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("remember","true");
                     editor.putString("name",txt_userid.getText().toString() );
                     editor.commit();
-                    Toast.makeText(MainActivity.this, "Checked", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Your credentials will be remembered in this device", Toast.LENGTH_LONG).show();
 
                 } else if(!buttonView.isChecked())
                 {
@@ -123,8 +120,6 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("name",txt_userid.getText().toString() );
                     editor.commit();
                     Toast.makeText(MainActivity.this, "Unchecked", Toast.LENGTH_LONG).show();
-
-
                 }
             }
         });
@@ -132,8 +127,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LoginUser(String userid, String password) {
-
-
         try{
 
             requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -148,21 +141,20 @@ public class MainActivity extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
                             if(response.equals("200")) {
                                 Log.i("VOLLEY", response);
                                 String name=userid;
-                                Toast.makeText(MainActivity.this, "User Loggedin successfully", Toast.LENGTH_LONG).show();
+                                String success_message = String.format("Welcome %s ", name);
+                                Toast.makeText(MainActivity.this, success_message, Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(MainActivity.this, scanpage.class).putExtra("name",name);
                                 startActivity(intent);
                                 SharedPreferences preferences= getSharedPreferences("checkbox",MODE_PRIVATE);
-                                //String checkbox=preferences.getString("remember","");
+                                SharedPreferences.Editor editor= preferences.edit();
+                                editor.putString("name",userid);
+                                editor.apply();
                                 String user_name=preferences.getString("name",userid);
-
-                                //startActivity(new Intent(MainActivity.this,HomeScreen.class)
-                                  //      .putExtra( "name", name ));
+                                //Toast.makeText(MainActivity.this, user_name, Toast.LENGTH_LONG).show();
                             }
-
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -174,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
                     }else {
                         Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
                     }
-
                 }
             }
             )
@@ -183,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
                 public String getBodyContentType() {
                     return "application/json; charset=utf-8";
                 }
-
                 @Override
                 public byte[] getBody() throws AuthFailureError {
                     try {
@@ -198,15 +188,11 @@ public class MainActivity extends AppCompatActivity {
                     String responseString = "";
                     if (response != null) {
                         responseString = String.valueOf(response.statusCode);
-
-                        // can get more details such as response.headers
-                    }
+                      }
                     return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
                 }
             } ;
             requestQueue.add(stringRequest);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

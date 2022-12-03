@@ -91,8 +91,8 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             Log.i("VOLLEY", response);
-                            Toast.makeText(Register.this, "User Signedup successfully", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(Register.this, scanpage.class);
+                            Toast.makeText(Register.this, "User Registered successfully", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(Register.this, MainActivity.class);
                             startActivity(intent);
                         }
                     }, new Response.ErrorListener() {
@@ -125,15 +125,11 @@ public class Register extends AppCompatActivity {
                     String responseString = "";
                     if (response != null) {
                         responseString = String.valueOf(response.statusCode);
-
-                        // can get more details such as response.headers
                     }
                     return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
                 }
             } ;
             requestQueue.add(stringRequest);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -27,14 +27,15 @@ public class ScanFragment extends Fragment {
 
 
         View view= inflater.inflate(R.layout.fragment_scan,container,false);
+                ///Global class fetching code ///
 //        GlobalClass globalClass = (GlobalClass) getActivity().getApplicationContext();
 //        u_name=view.findViewById(R.id.u_name);
 //        u_name.setText(globalClass.getUserID());
+            ////Global class fetchhing code///
         btn_scan = (Button) view.findViewById(R.id.btn_scan);
         btn_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(getActivity().getApplicationContext(),scanresults.class));
             }
         });
