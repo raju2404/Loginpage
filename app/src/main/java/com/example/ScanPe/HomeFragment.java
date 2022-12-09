@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
         List<SlideModel> slideModels=new ArrayList<>();
 
 
-        slideModels.add(new SlideModel(R.drawable.imagesliderpic, ScaleTypes.FIT));
+        //slideModels.add(new SlideModel(R.drawable.imagesliderpic, ScaleTypes.FIT));
         slideModels.add(new SlideModel("https://picsum.photos/id/237/200/300",ScaleTypes.FIT));
         slideModels.add(new SlideModel("https://picsum.photos/seed/picsum/200/300",ScaleTypes.FIT));
         slideModels.add(new SlideModel("https://picsum.photos/200/300?grayscale",ScaleTypes.FIT));

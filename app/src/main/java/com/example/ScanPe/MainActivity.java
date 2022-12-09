@@ -56,7 +56,11 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.btn_signup);
 
         SharedPreferences preferences= getSharedPreferences("checkbox",MODE_PRIVATE);
+        checkbox_remember.setChecked(true);//newly added
         String checkbox=preferences.getString("remember","");
+        SharedPreferences.Editor editor= preferences.edit();//newly added
+        editor.putString("remember","true");//newly added
+        editor.apply();//newly added
         String user_name=preferences.getString("name",txt_userid.getText().toString());
         if(checkbox.equals("true")){
             //Toast.makeText(MainActivity.this, "Checked", Toast.LENGTH_LONG).show();
@@ -130,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
         try{
 
             requestQueue = Volley.newRequestQueue(getApplicationContext());
-            //String URL=" https://ac2d-2405-201-d005-a06d-c1be-5bd7-c25-56e.ap.ngrok.io/checkUser";
-            String URL="http://10.0.2.2:5000/checkUser";
+            String URL=" http://9d0a-2405-201-d005-a06d-c139-dbc3-3496-96f8.ngrok.io/checkUser";
+            //String URL="http://10.0.2.2:5000/checkUser";
             //String URL= "http://192.168.29.225:8080/checkUser";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("USERID", userid);

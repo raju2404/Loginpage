@@ -52,7 +52,7 @@ public class scanresults extends AppCompatActivity implements ZXingScannerView.R
         Toast.makeText(scanresults.this, rawResult.toString(), Toast.LENGTH_LONG).show();
         scanpage.txt_result_scan.setText(rawResult.toString());
         Intent i=new Intent(scanresults.this,loadmenu.class);
-        i.putExtra("ScannedURL",rawResult.toString());
+        i.putExtra("BARCODE",rawResult.toString());
         startActivity(i);
         onBackPressed();
     }

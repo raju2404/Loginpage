@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,10 @@ public class scanpage extends AppCompatActivity {
         bottomnav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new HomeFragment()).commit();
         txt_result_scan = (TextView) findViewById(R.id.txt_result_scan);
+        SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
+        String name=preferences.getString("name","");
+        String welcome_message = String.format("Welcome %s ", name);
+        txt_result_scan.setText(welcome_message);
 
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
