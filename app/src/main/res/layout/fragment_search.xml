@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/holo_red_dark"
+    >
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_tv_products"
+        android:textColor="@color/black"
+        android:tooltipText="Search Products"
+
+
+        >
+    </EditText>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:id="@+id/search_prod_recyclerview1"
+        android:background="@color/grey_font"
+        android:scrollbars="vertical"
+
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

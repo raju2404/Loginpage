@@ -34,12 +34,12 @@ public class HomeFragment extends Fragment {
         ImageSlider imageSlider=view.findViewById(R.id.image_slider);
         List<SlideModel> slideModels=new ArrayList<>();
 
-
-        //slideModels.add(new SlideModel(R.drawable.imagesliderpic, ScaleTypes.FIT));
-        slideModels.add(new SlideModel("https://picsum.photos/id/237/200/300",ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.imagesliderpic, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.imageslider2, ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://picsum.photos/id/4/367/267",ScaleTypes.FIT));
         slideModels.add(new SlideModel("https://picsum.photos/seed/picsum/200/300",ScaleTypes.FIT));
         slideModels.add(new SlideModel("https://picsum.photos/200/300?grayscale",ScaleTypes.FIT));
-        imageSlider.setImageList(slideModels);
+         imageSlider.setImageList(slideModels);
 
         return view;
     }
