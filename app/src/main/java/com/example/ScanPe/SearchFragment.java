@@ -1,6 +1,7 @@
 package com.example.ScanPe;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +51,7 @@ public class SearchFragment extends Fragment {
     private ProductSearchAdapter mAdapter;
     EditText searchtext;
     private List<ProductItem> productItems;
+    Button btn_checkcart;
 
 
     @Nullable
@@ -56,6 +59,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        btn_checkcart=view.findViewById(R.id.btn_checkcart);
         searchtext = view.findViewById(R.id.ed_tv_products);
         searchtext.addTextChangedListener(new TextWatcher() {
             @Override
@@ -79,11 +83,21 @@ public class SearchFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
+
         productItems = new ArrayList<>();
         loadRecyclerviewData();
 
+        btn_checkcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity().getApplicationContext(),product_cart_data.class));
+            }
+        });
+
         return view;
     }
+
+
 
     private void loadRecyclerviewData() {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
@@ -143,4 +157,6 @@ public class SearchFragment extends Fragment {
         }
         mAdapter.filterList(filteredlist);
     }
+
+
 }

@@ -29,6 +29,11 @@ package="ScanPe">
     <activity
         android:name="com.example.ScanPe.Register"
         android:exported="true" />
+    <activity
+        android:name="com.example.ScanPe.product_cart_data"
+        android:exported="true"
+
+        />
 
     <activity
         android:name="com.example.ScanPe.MainActivity"
@@ -42,8 +47,11 @@ package="ScanPe">
     <activity
         android:name="com.example.ScanPe.Pop"
         android:theme="@style/AppthemeCustomtheme" />
+
+
 </application>
 
 </manifest>
+
 
 

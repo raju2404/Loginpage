@@ -1,13 +1,19 @@
 package com.example.ScanPe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +44,35 @@ public class ProductSearchAdapter extends RecyclerView.Adapter<ProductSearchAdap
 
         holder.txtProduct.setText(productItem.getPRODUCTNAME());
         //holder.txtLocation.setText("Location : " + listItem.getLocation());
+        holder.btn_addtocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ppname=productItem.getPRODUCTNAME();
+                String pprice=productItem.getPRICE();
+                Toast.makeText(v.getContext(), pprice, Toast.LENGTH_LONG).show();
+                Toast.makeText(v.getContext(), ppname, Toast.LENGTH_LONG).show();
+
+                AppDatabase db= Room.databaseBuilder(context.getApplicationContext(),AppDatabase.class,"cart_db").allowMainThreadQueries().build();
+                ProductDao productDao=db.ProductDao();
+                Boolean check=productDao.is_exist(Integer.parseInt(pprice));
+                if(check==false)
+                {
+
+                    int pid=Integer.parseInt(pprice);
+                    String pname=ppname;
+                    int price=Integer.parseInt(pprice);
+                    int qnt=Integer.parseInt("1");
+                    productDao.insertrecord(new Product(pid,pname,price,qnt));
+                    Toast.makeText(v.getContext(), "Product added to cart", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(v.getContext(), "Product exists", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -51,12 +86,15 @@ public class ProductSearchAdapter extends RecyclerView.Adapter<ProductSearchAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView txtProduct;
-
+        public LinearLayoutCompat search_linear_layout;
+        public Button btn_addtocart;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtProduct = (TextView) itemView.findViewById(R.id.txtProduct);
+            search_linear_layout = (LinearLayoutCompat)itemView.findViewById(R.id.search_linear_layout);
+            btn_addtocart= (Button) itemView.findViewById(R.id.btn_addtocart);
 
         }
     }

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/holo_red_dark"
+    android:background="@android:color/white"
     >
 
 
@@ -26,6 +26,14 @@
 
     </androidx.cardview.widget.CardView>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Cart"
+        android:id="@+id/btn_checkcart"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="500dp"
@@ -36,5 +44,4 @@
         >
     </androidx.recyclerview.widget.RecyclerView>
 
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
