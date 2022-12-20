@@ -26,6 +26,16 @@
 
     </androidx.cardview.widget.CardView>
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/search_prod_recyclerview1"
+        android:background="@color/white"
+        android:scrollbars="vertical"
+
+        >
+    </androidx.recyclerview.widget.RecyclerView>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,14 +44,5 @@
         android:padding="10dp"
         android:layout_marginTop="30dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:id="@+id/search_prod_recyclerview1"
-        android:background="@color/grey_font"
-        android:scrollbars="vertical"
 
-        >
-    </androidx.recyclerview.widget.RecyclerView>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

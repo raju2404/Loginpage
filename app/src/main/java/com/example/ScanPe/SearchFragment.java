@@ -44,7 +44,8 @@ import ScanPe.R;
 
 public class SearchFragment extends Fragment {
 
-    private static final String url = "http://10.0.2.2:5000/getProducts";
+    //private static final String url = "http://10.0.2.2:5000/getProducts";
+    private static final String url= " http://a736-2405-201-d005-a06d-9c09-7a63-dbb4-8223.ngrok.io/getProducts";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
@@ -116,6 +117,7 @@ public class SearchFragment extends Fragment {
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject o = array.getJSONObject(i);
                                 ProductItem item = new ProductItem(
+                                        o.getString("PRODUCTID"),
                                         o.getString("IMAGE"),
                                         o.getString("PRODUCTNAME"),
                                         o.getString("PRICE")

@@ -10,6 +10,9 @@ public class Product {
     @PrimaryKey(autoGenerate = true)
     public int pid;
 
+//    @ColumnInfo(name="userid")
+//    public String userid;
+
     @ColumnInfo(name="pname")
     public String pname;
 
@@ -19,8 +22,9 @@ public class Product {
     @ColumnInfo(name="qnt")
     public int qnt;
 
-    public Product(int pid, String pname , int price, int qnt){
+    public Product(int pid,String pname , int price, int qnt){
         this.pid = pid;
+       // this.userid=userid;
         this.pname = pname;
         this.price = price;
         this.qnt = qnt;
@@ -34,6 +38,15 @@ public class Product {
     public void setPid(int pid) {
         this.pid = pid;
     }
+
+//    public String getUserid() {
+//        return userid;
+//    }
+//
+//    public void setUserid(String userid) {
+//        this.userid = userid;
+//    }
+
 
     public String getPname() {
         return pname;

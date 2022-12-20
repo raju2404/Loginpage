@@ -93,6 +93,7 @@ public class loadmenu extends AppCompatActivity {
                                     JSONObject o = array.getJSONObject(i);
 
                                     ProductItem item = new ProductItem(
+                                            o.getString("PRODUCTID"),
                                             o.getString("IMAGE"),
                                             o.getString("PRODUCTNAME"),
                                             o.getString("PRICE")

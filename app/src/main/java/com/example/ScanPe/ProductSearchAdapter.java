@@ -2,6 +2,7 @@ package com.example.ScanPe;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+import static android.content.Context.MODE_PRIVATE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,31 +45,38 @@ public class ProductSearchAdapter extends RecyclerView.Adapter<ProductSearchAdap
         ProductItem productItem = productItems.get(position);
 
         holder.txtProduct.setText(productItem.getPRODUCTNAME());
+        holder.txtPrice.setText(productItem.getPRICE());
         //holder.txtLocation.setText("Location : " + listItem.getLocation());
         holder.btn_addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String ppname=productItem.getPRODUCTNAME();
-                String pprice=productItem.getPRICE();
-                Toast.makeText(v.getContext(), pprice, Toast.LENGTH_LONG).show();
-                Toast.makeText(v.getContext(), ppname, Toast.LENGTH_LONG).show();
+                String product_name=productItem.getPRODUCTNAME();
+                String product_price=productItem.getPRICE();
+                String product_id=productItem.getPRODUCTID();
+                SharedPreferences preferences= context.getSharedPreferences("checkbox", MODE_PRIVATE);
+                String name=preferences.getString("name","");
+
+                Toast.makeText(v.getContext(), name, Toast.LENGTH_LONG).show();
 
                 AppDatabase db= Room.databaseBuilder(context.getApplicationContext(),AppDatabase.class,"cart_db").allowMainThreadQueries().build();
                 ProductDao productDao=db.ProductDao();
-                Boolean check=productDao.is_exist(Integer.parseInt(pprice));
+                Boolean check=productDao.is_exist(Integer.parseInt(product_id));
                 if(check==false)
                 {
 
-                    int pid=Integer.parseInt(pprice);
-                    String pname=ppname;
-                    int price=Integer.parseInt(pprice);
+                    int pid=Integer.parseInt(product_id);
+                    String userid=name;
+                    String pname=product_name;
+                    int price=Integer.parseInt(product_price);
                     int qnt=Integer.parseInt("1");
                     productDao.insertrecord(new Product(pid,pname,price,qnt));
-                    Toast.makeText(v.getContext(), "Product added to cart", Toast.LENGTH_LONG).show();
+                    String success_message=String.format("%s added to shopping cart",pname);
+                    Toast.makeText(v.getContext(), success_message, Toast.LENGTH_LONG).show();
                 }
                 else
                 {
-                    Toast.makeText(v.getContext(), "Product exists", Toast.LENGTH_LONG).show();
+                    String Exists_message=String.format("%s already exists in the shopping cart, change the qty if you want",product_name);
+                    Toast.makeText(v.getContext(), Exists_message, Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -85,16 +94,19 @@ public class ProductSearchAdapter extends RecyclerView.Adapter<ProductSearchAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView txtProduct;
+        public TextView txtProduct,txtPrice;
         public LinearLayoutCompat search_linear_layout;
         public Button btn_addtocart;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtProduct = (TextView) itemView.findViewById(R.id.txtProduct);
+            txtPrice = (TextView) itemView.findViewById(R.id.txtPrice);
             search_linear_layout = (LinearLayoutCompat)itemView.findViewById(R.id.search_linear_layout);
             btn_addtocart= (Button) itemView.findViewById(R.id.btn_addtocart);
+
 
         }
     }
