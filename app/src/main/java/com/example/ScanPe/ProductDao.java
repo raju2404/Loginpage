@@ -22,4 +22,6 @@ public interface ProductDao {
     @Query("DELETE FROM Product WHERE pid = :id")
     void deleteById(int id);
 
+
+
 }

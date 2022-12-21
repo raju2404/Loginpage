@@ -44,8 +44,9 @@ import ScanPe.R;
 
 public class SearchFragment extends Fragment {
 
-    //private static final String url = "http://10.0.2.2:5000/getProducts";
-    private static final String url= " http://a736-2405-201-d005-a06d-9c09-7a63-dbb4-8223.ngrok.io/getProducts";
+    //
+    // private static final String url = "http://10.0.2.2:5000/getProducts";
+    private static final String url= "  http://e463-2405-201-d005-a06d-61dd-cac0-fff0-14e7.ngrok.io/getProducts";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 

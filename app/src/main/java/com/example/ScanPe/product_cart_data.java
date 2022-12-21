@@ -22,7 +22,6 @@ public class product_cart_data extends AppCompatActivity {
     TextView rateview;
     Button btn_checkout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +39,25 @@ public class product_cart_data extends AppCompatActivity {
                 //System.out.print(Integer.parseInt(intValue));
                 Intent intent = new Intent(product_cart_data.this, payment.class)
                         .putExtra("Totalamount",intValue );
-
-
-
                 startActivity(intent);
+//                AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+//                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
+//                ProductDao productDao = db.ProductDao();
+//                List<Product> products=productDao.getallproduct();
+//                int i;
+//                ArrayList<String> prod_ids = new ArrayList<>();
+//                ArrayList<String> prod_qtys = new ArrayList<>();
+//
+//                for(i=0;i< products.size();i++)
+//                    prod_ids.add(String.valueOf(products.get(i).getPid())) ;
+//
+//                for(i=0;i< products.size();i++)
+//                    prod_qtys.add(String.valueOf( products.get(i).getQnt()) );
+//                Intent intent = new Intent(product_cart_data.this, order_summary.class);
+//                intent.putExtra("IDs",prod_ids);
+//                intent.putExtra("QTYs",prod_qtys);
+//                startActivity(intent);
+
             }
         });
 

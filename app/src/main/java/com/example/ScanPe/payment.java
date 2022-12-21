@@ -1,6 +1,8 @@
 package com.example.ScanPe;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ScanPe.R;
 
@@ -41,8 +44,8 @@ public class payment extends AppCompatActivity {
         amount_tv.setText( String.valueOf(getIntent().getStringExtra("Totalamount"))) ;
 
         upi_id = findViewById(R.id.upi_id);
-        //upi_id.setText("bharatpe.9050016342@fbpe");
         upi_id.setText("dream11upi@kotak");
+        //upi_id.setText("my11circle.rzp@sbi");
         btn_send_payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,9 +143,27 @@ public class payment extends AppCompatActivity {
                 //Code to handle successful transaction here.
                 Toast.makeText(payment.this, "Transaction successful.", Toast.LENGTH_SHORT).show();
                 Toast.makeText(payment.this, approvalRefNo, Toast.LENGTH_SHORT).show();
-                //Exitpass.setEnabled(true);
-                Log.d("UPI", "responseStr: "+approvalRefNo);
 
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
+                ProductDao productDao = db.ProductDao();
+                List<Product> products=productDao.getallproduct();
+                int i;
+                ArrayList<String> prod_ids = new ArrayList<>();
+                ArrayList<String> prod_qtys = new ArrayList<>();
+
+                for(i=0;i< products.size();i++)
+                    prod_ids.add(String.valueOf(products.get(i).getPid())) ;
+
+                for(i=0;i< products.size();i++)
+                    prod_qtys.add(String.valueOf( products.get(i).getQnt()) );
+                Intent intent = new Intent(payment.this, order_summary.class);
+                intent.putExtra("IDs",prod_ids);
+                intent.putExtra("QTYs",prod_qtys);
+                startActivity(intent);
+
+
+                Log.d("UPI", "responseStr: "+approvalRefNo);
 
             }
             else if("Payment cancelled by user.".equals(paymentCancel)) {
