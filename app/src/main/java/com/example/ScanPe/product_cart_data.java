@@ -29,6 +29,7 @@ public class product_cart_data extends AppCompatActivity {
         getSupportActionBar().hide();
         rateview=findViewById(R.id.rateview);
         btn_checkout= (Button) findViewById(R.id.btn_checkout);
+
         getroomdata();
 
         btn_checkout.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +62,11 @@ public class product_cart_data extends AppCompatActivity {
             }
         });
 
+
     }
+
+
+
 
     private void getroomdata() {
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),

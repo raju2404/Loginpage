@@ -1,6 +1,8 @@
 package com.example.ScanPe;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.SharedPreferences;
@@ -31,6 +33,9 @@ import ScanPe.R;
 public class order_summary extends AppCompatActivity {
     TextView txt_view_prodids,txt_view_quantities,txt_view_product_count;
     private RequestQueue requestQueue;
+    RecyclerView recview;
+    TextView rateview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,8 @@ public class order_summary extends AppCompatActivity {
         setContentView(R.layout.activity_order_summary);
         SharedPreferences preferences= getSharedPreferences("checkbox", MODE_PRIVATE);
         String userid=preferences.getString("name","");
-
+        rateview=findViewById(R.id.rateview);
+        recview=findViewById(R.id.recview);
         txt_view_prodids= findViewById(R.id.txt_view_prodids);
         txt_view_quantities=findViewById(R.id.txt_view_quantities);
         txt_view_product_count=findViewById(R.id.txt_view_product_count);
@@ -53,16 +59,33 @@ public class order_summary extends AppCompatActivity {
         txt_view_product_count.setText(String.valueOf(Prod_ids_list.size()));
         //deleteCartItems();
 
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "cart_db").allowMainThreadQueries().build();
+        ProductDao productDao = db.ProductDao();
+
+        List<Product> products=productDao.getallproduct();
+        List<Product> products1=productDao.getallproduct();
+
+
+        for (int k=0;k<products1.size();k++) {
+            productDao.deleteById(products.get(0).getPid());
+            products.remove(0);
+            //notifyItemRemoved(position);
+        }
+
+
+        int sum=0,i;
+        for(i=0;i< products.size();i++)
+            sum=sum+(products.get(i).getPrice()*products.get(i).getQnt());
 
     }
-
 
 
     private void SaveTransaction(String userid, String prodid, String prodqty) {
         try{
             requestQueue = Volley.newRequestQueue(getApplicationContext());
             //String updateURL="http://10.0.2.2:5000/addOrder";
-            String updateURL = " http://e463-2405-201-d005-a06d-61dd-cac0-fff0-14e7.ngrok.io/addOrder";
+            String updateURL = " http://b1b7-2405-201-d005-a06d-cc7f-157e-c729-fe7e.ngrok.io/addOrder";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("USERID", userid);
             jsonBody.put("PRODUCTID", prodid);
