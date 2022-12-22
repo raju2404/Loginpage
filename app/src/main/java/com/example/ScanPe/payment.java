@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import ScanPe.R;
@@ -61,6 +62,10 @@ public class payment extends AppCompatActivity {
     }
 
     private void payUsingUpi(String amount, String upiId, String name_text, String note_text) {
+        Calendar c = Calendar.getInstance();
+        int Year=c.get(Calendar.YEAR);int month = c.get(Calendar.MONTH) + 1;
+        int date=c.get(Calendar.DATE);int milliseconds = c.get(Calendar.MILLISECOND);
+        String transactionid = Year+""+month+""+date+""+milliseconds;
         Uri uri = Uri.parse("upi://pay").buildUpon()
                 .appendQueryParameter("pa", upiId)
                 .appendQueryParameter("pn", name_text)
@@ -68,7 +73,7 @@ public class payment extends AppCompatActivity {
                 .appendQueryParameter("am", amount)
                 .appendQueryParameter("cu", "INR")
                 .appendQueryParameter("mc","")
-                .appendQueryParameter("tr","123456")
+                .appendQueryParameter("tr",transactionid)
                 .build();
 
 
@@ -148,22 +153,29 @@ public class payment extends AppCompatActivity {
                         AppDatabase.class, "cart_db").allowMainThreadQueries().build();
                 ProductDao productDao = db.ProductDao();
                 List<Product> products=productDao.getallproduct();
-                int i;
+                int sum=0,j;
+                for(j=0;j< products.size();j++)
+                    sum=sum+(products.get(j).getPrice()*products.get(j).getQnt());
+
                 ArrayList<String> prod_ids = new ArrayList<>();
                 ArrayList<String> prod_qtys = new ArrayList<>();
+                ArrayList<String> prod_price = new ArrayList<>();
 
-                for(i=0;i< products.size();i++)
-                    prod_ids.add(String.valueOf(products.get(i).getPid())) ;
+                for(int i=0;i< products.size();i++) {
+                    prod_ids.add(String.valueOf(products.get(i).getPid()));
+                    prod_qtys.add(String.valueOf(products.get(i).getQnt()));
+                    prod_price.add(String.valueOf(products.get(i).getPrice()));
 
-                for(i=0;i< products.size();i++)
-                    prod_qtys.add(String.valueOf( products.get(i).getQnt()) );
+                }
                 Intent intent = new Intent(payment.this, order_summary.class);
                 intent.putExtra("IDs",prod_ids);
                 intent.putExtra("QTYs",prod_qtys);
+                intent.putExtra("PRICEs",prod_price);
+                intent.putExtra("Amount",sum) ;
+
                 startActivity(intent);
 
-
-                Log.d("UPI", "responseStr: "+approvalRefNo);
+                    Log.d("UPI", "responseStr: "+approvalRefNo);
 
             }
             else if("Payment cancelled by user.".equals(paymentCancel)) {

@@ -6,12 +6,21 @@
     android:layout_height="match_parent"
     tools:context="com.example.ScanPe.order_summary">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="30dp"
         android:text="ORder success"
         android:id="@+id/txt_view_prodids"/>
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/gv_prodid"
+        android:background="@color/grey_font"
+        />
+
 
     <TextView
         android:layout_width="match_parent"
@@ -20,14 +29,16 @@
         android:text="ORder success"
         android:layout_marginVertical="100dp"
         android:id="@+id/txt_view_quantities"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="50dp"
+        android:textSize="30dp"
         android:text="ORder success"
         android:layout_marginVertical="200dp"
         android:id="@+id/txt_view_product_count"/>
+
+
+
 
 
 

@@ -56,7 +56,7 @@ public class ProductSearchAdapter extends RecyclerView.Adapter<ProductSearchAdap
                 SharedPreferences preferences= context.getSharedPreferences("checkbox", MODE_PRIVATE);
                 String name=preferences.getString("name","");
 
-                Toast.makeText(v.getContext(), name, Toast.LENGTH_LONG).show();
+                //Toast.makeText(v.getContext(), name, Toast.LENGTH_LONG).show();
 
                 AppDatabase db= Room.databaseBuilder(context.getApplicationContext(),AppDatabase.class,"cart_db").allowMainThreadQueries().build();
                 ProductDao productDao=db.ProductDao();
@@ -71,7 +71,7 @@ public class ProductSearchAdapter extends RecyclerView.Adapter<ProductSearchAdap
                     int qnt=Integer.parseInt("1");
                     productDao.insertrecord(new Product(pid,pname,price,qnt));
                     String success_message=String.format("%s added to shopping cart",pname);
-                    Toast.makeText(v.getContext(), success_message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(v.getContext(), success_message, Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

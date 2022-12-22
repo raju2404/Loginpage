@@ -10,9 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import ScanPe.R;
 
@@ -35,6 +38,7 @@ public class product_cart_data extends AppCompatActivity {
         btn_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String str= rateview.getText().toString();
                 String intValue = str.replaceAll("[^0-9]", "") ;
                 //System.out.print(Integer.parseInt(intValue));
@@ -45,18 +49,30 @@ public class product_cart_data extends AppCompatActivity {
 //                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
 //                ProductDao productDao = db.ProductDao();
 //                List<Product> products=productDao.getallproduct();
+//                ///Not needed when going thru payment page//
+//                int sum=0,j;
+//                for(j=0;j< products.size();j++)
+//                    sum=sum+(products.get(j).getPrice()*products.get(j).getQnt());
+//                Toast.makeText(product_cart_data.this, String.valueOf(sum), Toast.LENGTH_LONG).show();
+//                ////
 //                int i;
 //                ArrayList<String> prod_ids = new ArrayList<>();
 //                ArrayList<String> prod_qtys = new ArrayList<>();
+//                ArrayList<String> prod_price = new ArrayList<>();
 //
-//                for(i=0;i< products.size();i++)
-//                    prod_ids.add(String.valueOf(products.get(i).getPid())) ;
 //
-//                for(i=0;i< products.size();i++)
-//                    prod_qtys.add(String.valueOf( products.get(i).getQnt()) );
+//                for(i=0;i< products.size();i++) {
+//                    prod_ids.add(String.valueOf(products.get(i).getPid()));
+//                    prod_qtys.add(String.valueOf(products.get(i).getQnt()));
+//                    prod_price.add(String.valueOf(products.get(i).getPrice()));
+//
+//                }
 //                Intent intent = new Intent(product_cart_data.this, order_summary.class);
 //                intent.putExtra("IDs",prod_ids);
 //                intent.putExtra("QTYs",prod_qtys);
+//                intent.putExtra("PRICEs",prod_price);
+//                intent.putExtra("Amount",sum) ;
+//
 //                startActivity(intent);
 
             }
@@ -64,8 +80,6 @@ public class product_cart_data extends AppCompatActivity {
 
 
     }
-
-
 
 
     private void getroomdata() {
