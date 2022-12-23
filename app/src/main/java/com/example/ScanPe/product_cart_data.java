@@ -35,6 +35,7 @@ public class product_cart_data extends AppCompatActivity {
 
         getroomdata();
 
+
         btn_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,19 +50,10 @@ public class product_cart_data extends AppCompatActivity {
 //                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
 //                ProductDao productDao = db.ProductDao();
 //                List<Product> products=productDao.getallproduct();
-//                ///Not needed when going thru payment page//
-//                int sum=0,j;
-//                for(j=0;j< products.size();j++)
-//                    sum=sum+(products.get(j).getPrice()*products.get(j).getQnt());
-//                Toast.makeText(product_cart_data.this, String.valueOf(sum), Toast.LENGTH_LONG).show();
-//                ////
-//                int i;
 //                ArrayList<String> prod_ids = new ArrayList<>();
 //                ArrayList<String> prod_qtys = new ArrayList<>();
 //                ArrayList<String> prod_price = new ArrayList<>();
-//
-//
-//                for(i=0;i< products.size();i++) {
+//                for(int i=0;i< products.size();i++) {
 //                    prod_ids.add(String.valueOf(products.get(i).getPid()));
 //                    prod_qtys.add(String.valueOf(products.get(i).getQnt()));
 //                    prod_price.add(String.valueOf(products.get(i).getPrice()));
@@ -71,8 +63,7 @@ public class product_cart_data extends AppCompatActivity {
 //                intent.putExtra("IDs",prod_ids);
 //                intent.putExtra("QTYs",prod_qtys);
 //                intent.putExtra("PRICEs",prod_price);
-//                intent.putExtra("Amount",sum) ;
-//
+//                intent.putExtra("Amount",intValue) ;
 //                startActivity(intent);
 
             }

@@ -5,10 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,8 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -34,11 +39,19 @@ import java.util.List;
 import ScanPe.R;
 
 public class order_summary extends AppCompatActivity {
-    TextView txt_view_prodids,txt_view_quantities,txt_view_product_count;
+    TextView txt_view_product_count;
+    TextView txt_view_orderid;
     private RequestQueue requestQueue;
-    RecyclerView recview;
+    //private static final String url = "http://10.0.2.2:5000/getInvoiceItem/20221222970";
     TextView rateview;
-    GridView gv_prodid;
+    private RecyclerView recview_invoice;
+    private RecyclerView.Adapter adapter;
+
+    private ProductSearchAdapter mAdapter;
+    private List<InvoiceItem> InvoiceItems;
+    //20221222970
+
+
 
 
     @Override
@@ -48,11 +61,9 @@ public class order_summary extends AppCompatActivity {
         SharedPreferences preferences= getSharedPreferences("checkbox", MODE_PRIVATE);
         String userid=preferences.getString("name","");
         rateview=findViewById(R.id.rateview);
-        recview=findViewById(R.id.recview);
-        gv_prodid=(GridView) findViewById(R.id.gv_prodid);
-        txt_view_prodids= findViewById(R.id.txt_view_prodids);
-        txt_view_quantities=findViewById(R.id.txt_view_quantities);
+
         txt_view_product_count=findViewById(R.id.txt_view_product_count);
+        txt_view_orderid=findViewById(R.id.txt_view_orderid);
         ArrayList<String> Prod_ids_list = (ArrayList<String>) getIntent().getSerializableExtra("IDs");
         ArrayList<String> Prod_qtys_list = (ArrayList<String>) getIntent().getSerializableExtra("QTYs");
         ArrayList<String> Prod_price_list = (ArrayList<String>) getIntent().getSerializableExtra("PRICEs");
@@ -60,24 +71,78 @@ public class order_summary extends AppCompatActivity {
         ///Need to append with discount logic
         int Finalamount=10;
         ///
-        txt_view_prodids.setText(String.valueOf(Prod_ids_list));
-        txt_view_quantities.setText(String.valueOf(Prod_qtys_list));
-        Toast.makeText(order_summary.this, userid, Toast.LENGTH_LONG).show();
 
         Calendar c = Calendar.getInstance();
         int Year=c.get(Calendar.YEAR);int month = c.get(Calendar.MONTH) + 1;
         int date=c.get(Calendar.DATE);int milliseconds = c.get(Calendar.MILLISECOND);
         String orderid = Year+""+month+""+date+""+milliseconds;
+        txt_view_orderid.setText(String.valueOf(orderid));
         CreateOrder(orderid,userid,Totalamount,Finalamount);
 
         for(int j=0;j< Prod_ids_list.size();j++)
             SaveTransaction(orderid,Prod_ids_list.get(j), Prod_qtys_list.get(j),Prod_price_list.get(j) );
         txt_view_product_count.setText("Number of Items Purchased"+String.valueOf(Prod_ids_list.size()));
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,Prod_ids_list);
-        gv_prodid.setAdapter(adapter);
-
         deleteCartItems();
+
+
+        recview_invoice = (RecyclerView) findViewById(R.id.recview_invoice);
+        recview_invoice.setHasFixedSize(true);
+        recview_invoice.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        InvoiceItems = new ArrayList<>();
+        loadRecyclerviewData(orderid);
+
+
+
+    }
+
+    private void loadRecyclerviewData(String orderid) {
+        Toast.makeText(order_summary.this, orderid, Toast.LENGTH_LONG).show();
+        //String url =String.format( "http://10.0.2.2:5000/getInvoiceItem/%s", orderid);
+        String url = String.format("http://988c-2405-201-d005-a06d-345e-7025-f131-1a0e.ngrok.io/getInvoiceItem/%s",orderid);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading Data...");
+        progressDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray array = jsonObject.getJSONArray("myCollection");
+
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject o = array.getJSONObject(i);
+                                InvoiceItem item = new InvoiceItem(
+                                        o.getString("ORDERID"),
+                                        o.getString("PRODUCTID"),
+                                        o.getString("PRODUCTNAME"),
+                                        o.getString("QUANTITY"),
+                                        o.getString("PRICE")
+                                );
+                                InvoiceItems.add(item);
+
+                            }
+                            adapter = new InvoiceAdapter(InvoiceItems, getApplicationContext());
+                            recview_invoice.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        //Toast.makeText(getApplicationContext(),)
+
+                    }
+                });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
 
 
     }
@@ -86,7 +151,7 @@ public class order_summary extends AppCompatActivity {
         try{
             requestQueue = Volley.newRequestQueue(getApplicationContext());
             //String updateURL="http://10.0.2.2:5000/createOrder";
-            String updateURL = " http://68ab-2405-201-d005-a06d-596a-3dd5-5a0f-ab23.ngrok.io/createOrder";
+            String updateURL = " http://988c-2405-201-d005-a06d-345e-7025-f131-1a0e.ngrok.io/createOrder";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("ORDERID",orderid);
             jsonBody.put("USERID", userid);
@@ -171,7 +236,7 @@ public class order_summary extends AppCompatActivity {
         try{
             requestQueue = Volley.newRequestQueue(getApplicationContext());
             //String updateURL="http://10.0.2.2:5000/createOrderDetails";
-            String updateURL = "  http://68ab-2405-201-d005-a06d-596a-3dd5-5a0f-ab23.ngrok.io/createOrderDetails";
+            String updateURL = "  http://988c-2405-201-d005-a06d-345e-7025-f131-1a0e.ngrok.io/createOrderDetails";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("ORDERID", orderid);
             jsonBody.put("PRODUCTID", prodid);

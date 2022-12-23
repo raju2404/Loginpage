@@ -1,9 +1,14 @@
 package com.example.ScanPe;
 
+import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +17,7 @@ import androidx.room.Room;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ScanPe.R;
@@ -40,6 +46,21 @@ public class AddtoCartAdapter extends RecyclerView.Adapter<AddtoCartAdapter.view
         holder.recpprice.setText(String.valueOf(products.get(position).getPrice()));
         holder.recqnt.setText(String.valueOf(products.get(position).getQnt()));
 
+
+        holder.btn_inc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int qnt=products.get(position).getQnt();
+                qnt++;
+                products.get(position).setQnt(qnt);
+                AppDatabase db = Room.databaseBuilder(holder.recid.getContext(),
+                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
+                ProductDao productDao = db.ProductDao();
+                productDao.updateqntbyid(qnt,products.get(position).getPid());
+                notifyDataSetChanged();
+                updateprice();
+            }
+        });
         holder.delbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +74,25 @@ public class AddtoCartAdapter extends RecyclerView.Adapter<AddtoCartAdapter.view
                 updateprice();
             }
         });
+        holder.btn_dec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int qnt=products.get(position).getQnt();
+                qnt--;
+                products.get(position).setQnt(qnt);
+                AppDatabase db = Room.databaseBuilder(holder.recid.getContext(),
+                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
+                ProductDao productDao = db.ProductDao();
+                productDao.updateqntbyid(qnt,products.get(position).getPid());
+
+                notifyDataSetChanged();
+                updateprice();
+
+            }
+        });
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -62,8 +101,10 @@ public class AddtoCartAdapter extends RecyclerView.Adapter<AddtoCartAdapter.view
 
     class viewholder extends RecyclerView.ViewHolder
     {
-        TextView recid,recpname,recqnt, recpprice;
+        TextView recid,recqnt,recpname, recpprice;
+
         ImageButton delbtn;
+        ImageView btn_inc,btn_dec;
         public viewholder(@NonNull @NotNull View itemView) {
             super(itemView);
 
@@ -72,6 +113,10 @@ public class AddtoCartAdapter extends RecyclerView.Adapter<AddtoCartAdapter.view
             recpprice=itemView.findViewById(R.id.recpprice);
             recqnt=itemView.findViewById(R.id.recqnt);
             delbtn=itemView.findViewById(R.id.delbtn);
+
+            btn_inc=itemView.findViewById(R.id.btn_inc);
+            btn_dec=itemView.findViewById(R.id.btn_dec);
+
         }
     }
 
@@ -82,6 +127,7 @@ public class AddtoCartAdapter extends RecyclerView.Adapter<AddtoCartAdapter.view
             sum=sum+(products.get(i).getPrice()*products.get(i).getQnt());
 
         rateview.setText("Total Amount : INR "+sum);
+
     }
 
 

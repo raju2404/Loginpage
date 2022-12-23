@@ -22,6 +22,7 @@ public interface ProductDao {
     @Query("DELETE FROM Product WHERE pid = :id")
     void deleteById(int id);
 
-
+    @Query("UPDATE Product SET qnt=:qty where pid=:id ")
+    void updateqntbyid(int qty, int id);
 
 }

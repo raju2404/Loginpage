@@ -34,6 +34,13 @@
             android:textSize="20dp"
             android:gravity="center"
             android:id="@+id/recpprice"/>
+        <ImageView
+            android:id="@+id/btn_inc"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="#ffff"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_add_circle_24"/>
 
         <TextView
             android:layout_width="45dp"
@@ -41,8 +48,15 @@
             android:text="11"
             android:textSize="20dp"
             android:gravity="center"
+            android:inputType="textNoSuggestions"
             android:id="@+id/recqnt"/>
+        <ImageView
+            android:id="@+id/btn_dec"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
 
+            android:src="@drawable/ic_baseline_minimize_24"/>
 
         <ImageButton
             android:id="@+id/delbtn"

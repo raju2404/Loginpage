@@ -46,7 +46,7 @@ public class SearchFragment extends Fragment {
 
     //
     //private static final String url = "http://10.0.2.2:5000/getProducts";
-    private static final String url= "   http://68ab-2405-201-d005-a06d-596a-3dd5-5a0f-ab23.ngrok.io/getProducts";
+    private static final String url= "    http://988c-2405-201-d005-a06d-345e-7025-f131-1a0e.ngrok.io/getProducts";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
