@@ -5,9 +5,14 @@
       <map>
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/button_background.xml" value="0.2703125" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/button_bg.xml" value="0.2703125" />
+        <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/button_bg1.xml" value="0.40546875" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.21953125" />
+        <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/ic_baseline_add_shopping_cart_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.40546875" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.21953125" />
+        <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/ic_baseline_minimize_24.xml" value="0.40546875" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.21953125" />
+        <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.40546875" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout-hdpi/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout-hdpi/activity_register.xml" value="0.4236186348862405" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout-xhdpi/activity_main.xml" value="0.14102564102564102" />
@@ -15,10 +20,10 @@
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_homepage.xml" value="0.38125" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_homepage2.xml" value="0.38125" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_loadmenu.xml" value="0.38125" />
-        <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_main.xml" value="0.72" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_order_summary.xml" value="0.17421875" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_payment.xml" value="0.1953125" />
-        <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_product_cart_data.xml" value="0.1953125" />
+        <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_product_cart_data.xml" value="0.4" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_register.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_scan_product.xml" value="0.1953125" />
         <entry key="..\:/Users/rajui/AndroidStudioProjects/Loginpage/app/src/main/res/layout/activity_scanpage.xml" value="0.16393442622950818" />

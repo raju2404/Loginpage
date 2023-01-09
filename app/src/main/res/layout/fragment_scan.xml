@@ -4,24 +4,30 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scan Fragement"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginStart="173dp"-->
+<!--        android:text="Scan Fragement"-->
+<!--        android:textSize="30sp" />-->
+
 
 
     <Button
         android:id="@+id/btn_scan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scan"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="30dp"
+        android:layout_marginBottom="135dp"
         android:background="@drawable/button_bg"
-        android:textColor="@color/white"
-        />
+        android:text="Scan Product Barcode"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>

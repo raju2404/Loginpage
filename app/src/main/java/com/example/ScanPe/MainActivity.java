@@ -2,6 +2,8 @@ package com.example.ScanPe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -130,12 +132,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     private void LoginUser(String userid, String password) {
         try{
 
             requestQueue = Volley.newRequestQueue(getApplicationContext());
-            String URL="   http://988c-2405-201-d005-a06d-345e-7025-f131-1a0e.ngrok.io/checkUser";
-            //String URL="http://10.0.2.2:5000/checkUser";
+            //String URL="   http://cca0-2405-201-d005-a06d-e0d3-a4a8-a635-4b66.ngrok.io/checkUser";
+            String URL="http://10.0.2.2:5000/checkUser";
             //String URL= "http://192.168.29.225:8080/checkUser";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("USERID", userid);

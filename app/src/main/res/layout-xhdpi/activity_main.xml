@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <TextView
         android:layout_width="match_parent"
@@ -15,10 +16,10 @@
         android:fontFamily="cursive"
         android:paddingVertical="35dp"
         android:paddingRight="150dp"
-        android:text="ScanPe"
+        android:text="BasketPal"
         android:textAlignment="center"
         android:textColor="#044C07"
-        android:textSize="60sp"
+        android:textSize="40sp"
         android:textStyle="bold"></TextView>
 
     <TextView

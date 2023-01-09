@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,15 +46,16 @@ import ScanPe.R;
 public class SearchFragment extends Fragment {
 
     //
-    //private static final String url = "http://10.0.2.2:5000/getProducts";
-    private static final String url= "    http://988c-2405-201-d005-a06d-345e-7025-f131-1a0e.ngrok.io/getProducts";
+    private static final String url = "http://10.0.2.2:5000/getProducts";
+    //private static final String url= "    http://cca0-2405-201-d005-a06d-e0d3-a4a8-a635-4b66.ngrok.io/getProducts";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
     private ProductSearchAdapter mAdapter;
     EditText searchtext;
     private List<ProductItem> productItems;
-    Button btn_checkcart;
+    //Button btn_checkcart;
+    ImageButton img_showcart;
 
 
     @Nullable
@@ -61,7 +63,8 @@ public class SearchFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        btn_checkcart=view.findViewById(R.id.btn_checkcart);
+        //btn_checkcart=view.findViewById(R.id.btn_checkcart);
+        img_showcart= view.findViewById(R.id.img_showcart);
         searchtext = view.findViewById(R.id.ed_tv_products);
         searchtext.addTextChangedListener(new TextWatcher() {
             @Override
@@ -89,7 +92,14 @@ public class SearchFragment extends Fragment {
         productItems = new ArrayList<>();
         loadRecyclerviewData();
 
-        btn_checkcart.setOnClickListener(new View.OnClickListener() {
+//        btn_checkcart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getActivity().getApplicationContext(),product_cart_data.class));
+//            }
+//        });
+
+        img_showcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity().getApplicationContext(),product_cart_data.class));
@@ -121,7 +131,8 @@ public class SearchFragment extends Fragment {
                                         o.getString("PRODUCTID"),
                                         o.getString("IMAGE"),
                                         o.getString("PRODUCTNAME"),
-                                        o.getString("PRICE")
+                                        o.getString("PRICE"),
+                                        o.getString("LOCATION")
                                 );
                                 productItems.add(item);
 

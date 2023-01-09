@@ -36,13 +36,26 @@
 
         >
     </androidx.recyclerview.widget.RecyclerView>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Check Cart"
-        android:id="@+id/btn_checkcart"
-        android:padding="10dp"
-        android:layout_marginTop="30dp"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Check Cart"-->
+<!--        android:id="@+id/btn_checkcart"-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="30dp"/>-->
+
+    <ImageButton
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:src="@drawable/ic_baseline_shopping_cart_24"
+        android:backgroundTint="@color/white"
+        android:layout_gravity="center"
+        android:id="@+id/img_showcart"
+        android:layout_marginVertical="120dp"
+        ></ImageButton>
+
+
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

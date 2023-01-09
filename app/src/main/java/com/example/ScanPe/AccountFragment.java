@@ -37,7 +37,7 @@ public class AccountFragment extends Fragment {
         u_id=view.findViewById(R.id.u_id);
         SharedPreferences preferences=getActivity().getSharedPreferences("checkbox",MODE_PRIVATE);
         String name=preferences.getString("name","");
-        u_id.setText(name);
+        //u_id.setText(name);
                 //Fetching user id using shared preference from MainActivity page//
 
                 //Log out logic , fetching shared preference value from MainActivity page//

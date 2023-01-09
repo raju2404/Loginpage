@@ -97,8 +97,8 @@ public class order_summary extends AppCompatActivity {
 
     private void loadRecyclerviewData(String orderid) {
         Toast.makeText(order_summary.this, orderid, Toast.LENGTH_LONG).show();
-        //String url =String.format( "http://10.0.2.2:5000/getInvoiceItem/%s", orderid);
-        String url = String.format("http://988c-2405-201-d005-a06d-345e-7025-f131-1a0e.ngrok.io/getInvoiceItem/%s",orderid);
+        String url =String.format( "http://10.0.2.2:5000/getInvoiceItem/%s", orderid);
+        //String url = String.format("http://cca0-2405-201-d005-a06d-e0d3-a4a8-a635-4b66.ngrok.io/getInvoiceItem/%s",orderid);
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
         progressDialog.show();
@@ -150,8 +150,8 @@ public class order_summary extends AppCompatActivity {
     private void CreateOrder(String orderid, String userid, int totalamount, int finalamount) {
         try{
             requestQueue = Volley.newRequestQueue(getApplicationContext());
-            //String updateURL="http://10.0.2.2:5000/createOrder";
-            String updateURL = " http://988c-2405-201-d005-a06d-345e-7025-f131-1a0e.ngrok.io/createOrder";
+            String updateURL="http://10.0.2.2:5000/createOrder";
+            //String updateURL = " http://cca0-2405-201-d005-a06d-e0d3-a4a8-a635-4b66.ngrok.io/createOrder";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("ORDERID",orderid);
             jsonBody.put("USERID", userid);
@@ -235,8 +235,8 @@ public class order_summary extends AppCompatActivity {
     private void SaveTransaction(String orderid, String prodid, String prodqty,String price) {
         try{
             requestQueue = Volley.newRequestQueue(getApplicationContext());
-            //String updateURL="http://10.0.2.2:5000/createOrderDetails";
-            String updateURL = "  http://988c-2405-201-d005-a06d-345e-7025-f131-1a0e.ngrok.io/createOrderDetails";
+            String updateURL="http://10.0.2.2:5000/createOrderDetails";
+            //String updateURL = "  http://cca0-2405-201-d005-a06d-e0d3-a4a8-a635-4b66.ngrok.io/createOrderDetails";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("ORDERID", orderid);
             jsonBody.put("PRODUCTID", prodid);

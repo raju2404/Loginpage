@@ -45,7 +45,7 @@ public class ProductSearchAdapter extends RecyclerView.Adapter<ProductSearchAdap
         ProductItem productItem = productItems.get(position);
 
         holder.txtProduct.setText(productItem.getPRODUCTNAME());
-        holder.txtPrice.setText(productItem.getPRICE());
+        holder.txtPrice.setText("Price :" +  productItem.getPRICE());
         //holder.txtLocation.setText("Location : " + listItem.getLocation());
         holder.btn_addtocart.setOnClickListener(new View.OnClickListener() {
             @Override

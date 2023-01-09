@@ -6,13 +6,15 @@ public class ProductItem {
     private String IMAGE;
     private String PRODUCTNAME;
     private String PRICE;
+    private String LOCATION;
 
 
-    public ProductItem(String PRODUCTID,String IMAGE, String PRODUCTNAME ,String PRICE) {
+    public ProductItem(String PRODUCTID,String IMAGE, String PRODUCTNAME ,String PRICE, String LOCATION) {
         this.PRODUCTID=PRODUCTID;
         this.IMAGE=IMAGE;
         this.PRODUCTNAME=PRODUCTNAME;
         this.PRICE=PRICE;
+        this.LOCATION=LOCATION;
 
     }
 
@@ -30,6 +32,8 @@ public class ProductItem {
         return PRICE;
     }
 
+    public String getLOCATION() {return LOCATION ; }
+
     public void setPRODUCTID(String PRODUCTID) {this.PRODUCTID = PRODUCTID;}
 
     public void setIMAGE(String IMAGE) {
@@ -43,4 +47,6 @@ public class ProductItem {
     public void setPRICE(String PRICE) {
         this.PRICE = PRICE;
     }
+
+    public void setLOCATION(String LOCATION) { this.LOCATION = LOCATION ; }
 }

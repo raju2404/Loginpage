@@ -74,7 +74,7 @@ public class loadmenu extends AppCompatActivity {
         try {
 
 
-            String complete_url = String.format("  http://9d0a-2405-201-d005-a06d-c139-dbc3-3496-96f8.ngrok.io/getProducts/%s",bar_code);
+            String complete_url = String.format("  http://cca0-2405-201-d005-a06d-e0d3-a4a8-a635-4b66.ngrok.io/getProducts/%s",bar_code);
             //String complete_url = "  http://9d0a-2405-201-d005-a06d-c139-dbc3-3496-96f8.ngrok.io/getProducts";
             final ProgressDialog progressDialog = new ProgressDialog(loadmenu.this);
             progressDialog.setMessage("Loading Data...");
@@ -96,7 +96,8 @@ public class loadmenu extends AppCompatActivity {
                                             o.getString("PRODUCTID"),
                                             o.getString("IMAGE"),
                                             o.getString("PRODUCTNAME"),
-                                            o.getString("PRICE")
+                                            o.getString("PRICE"),
+                                            o.getString("LOCATION")
 
                                     );
                                     ProductItems.add(item);

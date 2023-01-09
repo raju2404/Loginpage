@@ -43,28 +43,28 @@ public class product_cart_data extends AppCompatActivity {
                 String str= rateview.getText().toString();
                 String intValue = str.replaceAll("[^0-9]", "") ;
                 //System.out.print(Integer.parseInt(intValue));
-                Intent intent = new Intent(product_cart_data.this, payment.class)
-                        .putExtra("Totalamount",intValue );
-                startActivity(intent);
-//                AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-//                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
-//                ProductDao productDao = db.ProductDao();
-//                List<Product> products=productDao.getallproduct();
-//                ArrayList<String> prod_ids = new ArrayList<>();
-//                ArrayList<String> prod_qtys = new ArrayList<>();
-//                ArrayList<String> prod_price = new ArrayList<>();
-//                for(int i=0;i< products.size();i++) {
-//                    prod_ids.add(String.valueOf(products.get(i).getPid()));
-//                    prod_qtys.add(String.valueOf(products.get(i).getQnt()));
-//                    prod_price.add(String.valueOf(products.get(i).getPrice()));
-//
-//                }
-//                Intent intent = new Intent(product_cart_data.this, order_summary.class);
-//                intent.putExtra("IDs",prod_ids);
-//                intent.putExtra("QTYs",prod_qtys);
-//                intent.putExtra("PRICEs",prod_price);
-//                intent.putExtra("Amount",intValue) ;
+//                Intent intent = new Intent(product_cart_data.this, payment.class)
+//                        .putExtra("Totalamount",intValue );
 //                startActivity(intent);
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
+                ProductDao productDao = db.ProductDao();
+                List<Product> products=productDao.getallproduct();
+                ArrayList<String> prod_ids = new ArrayList<>();
+                ArrayList<String> prod_qtys = new ArrayList<>();
+                ArrayList<String> prod_price = new ArrayList<>();
+                for(int i=0;i< products.size();i++) {
+                    prod_ids.add(String.valueOf(products.get(i).getPid()));
+                    prod_qtys.add(String.valueOf(products.get(i).getQnt()));
+                    prod_price.add(String.valueOf(products.get(i).getPrice()));
+
+                }
+                Intent intent = new Intent(product_cart_data.this, order_summary.class);
+                intent.putExtra("IDs",prod_ids);
+                intent.putExtra("QTYs",prod_qtys);
+                intent.putExtra("PRICEs",prod_price);
+                intent.putExtra("Amount",intValue) ;
+                startActivity(intent);
 
             }
         });

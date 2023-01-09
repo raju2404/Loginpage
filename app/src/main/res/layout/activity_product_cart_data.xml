@@ -11,7 +11,7 @@
       android:layout_width="match_parent"
       android:id="@+id/headerpanel"
       android:layout_height="50dp"
-      android:background="@color/black"
+      android:background="@color/teal_700"
       android:gravity="center_vertical"
       android:orientation="horizontal">
     <TextView
@@ -24,7 +24,7 @@
         android:layout_marginLeft="10dp"
         android:text="PID"/>
     <TextView
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:textSize="18dp"
@@ -32,19 +32,21 @@
         android:textColor="#fff"
         android:textStyle="bold"
         android:text="Product"/>
+
     <TextView
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
-        android:textSize="18dp"
         android:gravity="center"
-        android:textStyle="bold"
+        android:text="Price"
         android:textColor="#fff"
-        android:text="Price"/>
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
     <TextView
         android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
+        android:layout_marginLeft="10dp"
         android:textSize="18dp"
         android:gravity="center"
         android:textStyle="bold"
@@ -71,7 +73,7 @@
       android:orientation="horizontal"
       android:layout_height="50dp"
       android:paddingLeft="5dp"
-      android:background="@color/black"
+      android:background="@color/teal_700"
       android:layout_alignParentBottom="true"
       android:gravity="center">
 

@@ -149,31 +149,31 @@ public class payment extends AppCompatActivity {
                 Toast.makeText(payment.this, "Transaction successful.", Toast.LENGTH_SHORT).show();
                 Toast.makeText(payment.this, approvalRefNo, Toast.LENGTH_SHORT).show();
 
-                AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
-                ProductDao productDao = db.ProductDao();
-                List<Product> products=productDao.getallproduct();
-                int sum=0,j;
-                for(j=0;j< products.size();j++)
-                    sum=sum+(products.get(j).getPrice()*products.get(j).getQnt());
-
-                ArrayList<String> prod_ids = new ArrayList<>();
-                ArrayList<String> prod_qtys = new ArrayList<>();
-                ArrayList<String> prod_price = new ArrayList<>();
-
-                for(int i=0;i< products.size();i++) {
-                    prod_ids.add(String.valueOf(products.get(i).getPid()));
-                    prod_qtys.add(String.valueOf(products.get(i).getQnt()));
-                    prod_price.add(String.valueOf(products.get(i).getPrice()));
-
-                }
-                Intent intent = new Intent(payment.this, order_summary.class);
-                intent.putExtra("IDs",prod_ids);
-                intent.putExtra("QTYs",prod_qtys);
-                intent.putExtra("PRICEs",prod_price);
-                intent.putExtra("Amount",sum) ;
-
-                startActivity(intent);
+//                AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+//                        AppDatabase.class, "cart_db").allowMainThreadQueries().build();
+//                ProductDao productDao = db.ProductDao();
+//                List<Product> products=productDao.getallproduct();
+//                int sum=0,j;
+//                for(j=0;j< products.size();j++)
+//                    sum=sum+(products.get(j).getPrice()*products.get(j).getQnt());
+//
+//                ArrayList<String> prod_ids = new ArrayList<>();
+//                ArrayList<String> prod_qtys = new ArrayList<>();
+//                ArrayList<String> prod_price = new ArrayList<>();
+//
+//                for(int i=0;i< products.size();i++) {
+//                    prod_ids.add(String.valueOf(products.get(i).getPid()));
+//                    prod_qtys.add(String.valueOf(products.get(i).getQnt()));
+//                    prod_price.add(String.valueOf(products.get(i).getPrice()));
+//
+//                }
+//                Intent intent = new Intent(payment.this, order_summary.class);
+//                intent.putExtra("IDs",prod_ids);
+//                intent.putExtra("QTYs",prod_qtys);
+//                intent.putExtra("PRICEs",prod_price);
+//                intent.putExtra("Amount",sum) ;
+//
+//                startActivity(intent);
 
                     Log.d("UPI", "responseStr: "+approvalRefNo);
 

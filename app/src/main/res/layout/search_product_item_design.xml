@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
 android:layout_margin="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
 
 
@@ -13,18 +14,20 @@ android:layout_margin="10dp"
             android:background="@color/white"
             android:orientation="horizontal"
             android:id="@+id/search_linear_layout"
-
+            android:layout_gravity="left"
             >
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginRight="100dp"
+               >
             <TextView
                 android:id="@+id/txtProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Productname"
-                android:textSize="10dp"
+                android:textSize="15dp"
 
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
@@ -37,14 +40,34 @@ android:layout_margin="10dp"
                 android:textColor="@color/black"
                 />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+<!--            <ImageButton-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/img_addotcart"-->
+<!--                android:layout_marginLeft="80dp"-->
+<!--                android:src="@drawable/add_to_cart"-->
+<!--                android:background="@color/white"-->
+<!--                android:layout_gravity="left"-->
+
+
+
+<!--                />-->
+
+
+
             <Button
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_addtocart"
                 android:text="AddToCart"
                 android:textSize="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginLeft="70dp"
+                android:backgroundTint="#81DA19"
+                android:layout_gravity="end"
 
-                android:layout_marginLeft="200dp"
                 ></Button>
 
                    </androidx.appcompat.widget.LinearLayoutCompat>
