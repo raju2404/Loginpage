@@ -168,7 +168,7 @@ public class scanpage extends AppCompatActivity {
                         case R.id.nav_scan:
                             selectFragement = new ScanFragment();
                             break;
-                        case R.id.nav_search:
+                        case R.id.nav_home_delivery:
                             selectFragement=new SearchFragment();
                             break;
 

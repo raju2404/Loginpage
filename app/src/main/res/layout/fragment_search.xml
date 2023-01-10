@@ -19,6 +19,7 @@
         android:id="@+id/ed_tv_products"
         android:textColor="@color/black"
         android:tooltipText="Search Products"
+        android:hint="Search Products"
 
 
         >

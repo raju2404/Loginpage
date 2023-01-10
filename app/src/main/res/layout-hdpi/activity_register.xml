@@ -14,7 +14,7 @@
         android:fontFamily="cursive"
         android:paddingVertical="15dp"
         android:paddingRight="150dp"
-        android:text="ScanPe"
+        android:text="BasketPal"
         android:textAlignment="center"
         android:textColor="#044C07"
         android:textSize="60sp"

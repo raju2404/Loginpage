@@ -14,7 +14,7 @@
         android:fontFamily="cursive"
         android:paddingVertical="35dp"
         android:paddingRight="150dp"
-        android:text="ScanPe"
+        android:text="BasketPal"
         android:textAlignment="center"
         android:textColor="#044C07"
         android:textSize="60sp"
@@ -64,7 +64,6 @@
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:text="Register"
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="30dp"

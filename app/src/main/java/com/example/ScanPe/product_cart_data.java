@@ -8,6 +8,7 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,10 @@ public class product_cart_data extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(getWindow().FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_product_cart_data);
         getSupportActionBar().hide();
         rateview=findViewById(R.id.rateview);
@@ -40,8 +45,9 @@ public class product_cart_data extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String str= rateview.getText().toString();
-                String intValue = str.replaceAll("[^0-9]", "") ;
+
+                String str = rateview.getText().toString();
+                String intValue = str.replaceAll("[^0-9]", "");
                 //System.out.print(Integer.parseInt(intValue));
 //                Intent intent = new Intent(product_cart_data.this, payment.class)
 //                        .putExtra("Totalamount",intValue );
@@ -49,24 +55,31 @@ public class product_cart_data extends AppCompatActivity {
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                         AppDatabase.class, "cart_db").allowMainThreadQueries().build();
                 ProductDao productDao = db.ProductDao();
-                List<Product> products=productDao.getallproduct();
+                List<Product> products = productDao.getallproduct();
                 ArrayList<String> prod_ids = new ArrayList<>();
                 ArrayList<String> prod_qtys = new ArrayList<>();
                 ArrayList<String> prod_price = new ArrayList<>();
-                for(int i=0;i< products.size();i++) {
-                    prod_ids.add(String.valueOf(products.get(i).getPid()));
-                    prod_qtys.add(String.valueOf(products.get(i).getQnt()));
-                    prod_price.add(String.valueOf(products.get(i).getPrice()));
+                if (products.size() != 0) {
+                    for (int i = 0; i < products.size(); i++) {
+                        prod_ids.add(String.valueOf(products.get(i).getPid()));
+                        prod_qtys.add(String.valueOf(products.get(i).getQnt()));
+                        prod_price.add(String.valueOf(products.get(i).getPrice()));
+
+                    }
+                    Intent intent = new Intent(product_cart_data.this, order_summary.class);
+                    intent.putExtra("IDs", prod_ids);
+                    intent.putExtra("QTYs", prod_qtys);
+                    intent.putExtra("PRICEs", prod_price);
+                    intent.putExtra("Amount", intValue);
+                    startActivity(intent);
 
                 }
-                Intent intent = new Intent(product_cart_data.this, order_summary.class);
-                intent.putExtra("IDs",prod_ids);
-                intent.putExtra("QTYs",prod_qtys);
-                intent.putExtra("PRICEs",prod_price);
-                intent.putExtra("Amount",intValue) ;
-                startActivity(intent);
-
+                else
+                {
+                    Toast.makeText(product_cart_data.this, "Cart is Empty", Toast.LENGTH_LONG).show();
+                }
             }
+
         });
 
 

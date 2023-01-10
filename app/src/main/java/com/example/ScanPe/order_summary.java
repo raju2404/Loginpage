@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,6 +58,10 @@ public class order_summary extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(getWindow().FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_order_summary);
         SharedPreferences preferences= getSharedPreferences("checkbox", MODE_PRIVATE);
         String userid=preferences.getString("name","");
@@ -76,12 +81,12 @@ public class order_summary extends AppCompatActivity {
         int Year=c.get(Calendar.YEAR);int month = c.get(Calendar.MONTH) + 1;
         int date=c.get(Calendar.DATE);int milliseconds = c.get(Calendar.MILLISECOND);
         String orderid = Year+""+month+""+date+""+milliseconds;
-        txt_view_orderid.setText(String.valueOf(orderid));
+        txt_view_orderid.setText("Invoice # :" + String.valueOf(orderid));
         CreateOrder(orderid,userid,Totalamount,Finalamount);
 
         for(int j=0;j< Prod_ids_list.size();j++)
             SaveTransaction(orderid,Prod_ids_list.get(j), Prod_qtys_list.get(j),Prod_price_list.get(j) );
-        txt_view_product_count.setText("Number of Items Purchased"+String.valueOf(Prod_ids_list.size()));
+        txt_view_product_count.setText("Number of Items : "+String.valueOf(Prod_ids_list.size()));
         deleteCartItems();
 
 
